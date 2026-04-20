@@ -1,5 +1,6 @@
 package com.example.shooter
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.runtime.Composable
@@ -9,6 +10,7 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.shooter.ui.main.MainScreen
+import com.example.shooter.game.ui.GameScreen
 
 @Composable
 fun MainNavigation() {
@@ -21,6 +23,9 @@ fun MainNavigation() {
       entryProvider {
         entry<Main> {
           MainScreen(onItemClick = { navKey -> backStack.add(navKey) }, modifier = Modifier.safeDrawingPadding().padding(16.dp))
+        }
+        entry<Game> {
+          GameScreen(onExit = { backStack.removeLastOrNull() }, modifier = Modifier.fillMaxSize())
         }
       },
   )
